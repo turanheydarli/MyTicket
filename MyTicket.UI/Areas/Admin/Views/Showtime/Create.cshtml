@@ -1,0 +1,48 @@
+@model ShowtimeViewModel
+
+<div class="container-fluid">
+    <h1 class="h3 mb-2 text-gray-800">Create New Showtime</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Showtime Details</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" asp-controller="Showtime" method="post">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Movie</span>
+                    <select asp-for="Showtime.MovieId" class="form-control" aria-label="Movie" aria-describedby="basic-addon1">
+                        <option value="">Select a Movie</option>
+                        @foreach (var movie in Model.Movies)
+                        {
+                            <option value="@movie.Id">@movie.Title</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon2">Cinema Hall</span>
+                    <select asp-for="Showtime.CinemaHallId" class="form-control" aria-label="Cinema Hall" aria-describedby="basic-addon2">
+                        <option value="">Select a Cinema Hall</option>
+                        @foreach (var hall in Model.CinemaHalls)
+                        {
+                            <option value="@hall.Id">@hall.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Start Time</span>
+                    <input asp-for="Showtime.StartTime" type="datetime-local" class="form-control" aria-label="Start Time" aria-describedby="basic-addon3">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon4">End Time</span>
+                    <input asp-for="Showtime.EndTime" type="datetime-local" class="form-control" aria-label="End Time" aria-describedby="basic-addon4">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+</div>

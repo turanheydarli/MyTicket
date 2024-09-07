@@ -1,0 +1,31 @@
+@model CustomerViewModel
+
+
+<div class="container-fluid">
+    <h1 class="h3 mb-2 text-gray-800">Create New Movie</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Movie Details</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" asp-controller="Customer" method="post">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Title</span>
+                    <input asp-for="Customer.Name" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon2">Email</span>
+                    <input asp-for="Customer.Email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon2">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon2">Phone Number</span>
+                    <input asp-for="Customer.PhoneNumber" class="form-control" placeholder="Phone Number" aria-label="Phone Number" aria-describedby="basic-addon2">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+</div>

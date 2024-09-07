@@ -1,0 +1,74 @@
+@model IList<Payment>
+
+<div class="container-fluid">
+
+    <h1 class="h3 mb-2 text-gray-800">Payments</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary">Payments List</h6>
+            <a href="@Url.Action("Create", "Payment")" class="btn btn-primary btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span class="text">Create New Payment</span>
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Movie</th>
+                        <th>Customer</th>
+                        <th>Seat Number</th>
+                        <th>Payment Date</th>
+                        <th>Amount</th>
+                        <th>Payment Method</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Movie</th>
+                        <th>Customer</th>
+                        <th>Seat Number</th>
+                        <th>Payment Date</th>
+                        <th>Amount</th>
+                        <th>Payment Method</th>
+                        <th>Actions</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    @foreach (var payment in Model)
+                    {
+                        <tr>
+                            <td>@payment.Id</td>
+                            <td>@payment.Ticket.Showtime.Movie.Title</td>
+                            <td>@payment.Ticket.Customer.Name</td>
+                            <td>@payment.Ticket.Seat.SeatNumber</td>
+                            <td>@payment.PaymentDate.ToString("g")</td>
+                            <td>@payment.Amount.ToString("C")</td>
+                            <td>@payment.PaymentType.ToString()</td>
+                            <td>
+                                <a href="@Url.Action("Update", "Payment", new { id = payment.Id })" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-edit"></i> Update
+                                </a>
+                                <form asp-action="Delete" asp-controller="Payment" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this payment?');">
+                                    <input type="hidden" name="id" value="@payment.Id" />
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

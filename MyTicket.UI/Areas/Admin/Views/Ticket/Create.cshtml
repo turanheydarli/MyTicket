@@ -1,0 +1,78 @@
+@model TicketViewModel
+
+<div class="container-fluid">
+    <h1 class="h3 mb-2 text-gray-800">Create New Ticket</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Ticket Details</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" asp-controller="Ticket" method="post">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Showtime</span>
+                    <select asp-for="Ticket.ShowtimeId" class="form-control" id="showtime-select" aria-label="Showtime" aria-describedby="basic-addon1">
+                        <option value="">Select a Showtime</option>
+                        @foreach (var showtime in Model?.Showtimes)
+                        {
+                            <option value="@showtime.Id">@showtime?.Movie?.Title - @showtime?.StartTime.ToString("g")</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon2">Customer</span>
+                    <select asp-for="Ticket.CustomerId" class="form-control" aria-label="Customer" aria-describedby="basic-addon2">
+                        <option value="">Select a Customer</option>
+                        @foreach (var customer in Model.Customers)
+                        {
+                            <option value="@customer.Id">@customer.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Seat Number</span>
+                    <select asp-for="Ticket.SeatId" class="form-control" id="seat-select" aria-label="Seat Number" aria-describedby="basic-addon3">
+                        <option value="">Select a Seat</option>
+                    </select>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon4">Purchase Date</span>
+                    <input asp-for="Ticket.PurchaseDate" type="datetime-local" class="form-control" aria-label="Purchase Date" aria-describedby="basic-addon4">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#showtime-select').change(function() {
+                var showtimeId = $(this).val();
+                if (showtimeId) {
+                    $.ajax({
+                        url: '@Url.Action("GetSeatsByShowtime", "Ticket")',
+                        type: 'GET',
+                        data: { showtimeId: showtimeId },
+                        success: function(data) {
+                            $('#seat-select').empty();
+                            $('#seat-select').append('<option value="">Select a Seat</option>');
+                            $.each(data, function(index, seat) {
+                                $('#seat-select').append('<option value="' + seat.id + '">Seat: ' + seat.seatNumber + ' (Row: ' + seat.row + ', Column: ' + seat.column + ')</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('#seat-select').empty();
+                    $('#seat-select').append('<option value="">Select a Seat</option>');
+                }
+            });
+        });
+    </script>
+}

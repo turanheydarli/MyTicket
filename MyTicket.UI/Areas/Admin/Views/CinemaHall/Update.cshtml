@@ -1,0 +1,90 @@
+@model MyTicket.UI.Areas.Admin.Models.CinemaHallViewModel
+
+<div class="container-fluid">
+    <h1 class="h3 mb-2 text-gray-800">Edit Cinema Hall</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Cinema Hall</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="Update" asp-controller="CinemaHall" method="post">
+                <input type="hidden" asp-for="CinemaHall.Id" />
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Name</span>
+                    <input asp-for="CinemaHall.Name" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon2">Location</span>
+                    <input asp-for="CinemaHall.Location" class="form-control" placeholder="Location" aria-label="Location" aria-describedby="basic-addon2">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Capacity</span>
+                    <input asp-for="CinemaHall.Capacity" class="form-control" placeholder="Capacity" aria-label="Capacity" aria-describedby="basic-addon3">
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h6 class="font-weight-bold text-primary">Seats</h6>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Seat Number</th>
+                                    <th>Row</th>
+                                    <th>Column</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="seats-container">
+                                @for (int i = 0; i < Model.Seats.Count; i++)
+                                {
+                                    <tr>
+                                        <td>
+                                            <input type="hidden" asp-for="@Model.Seats[i].Id" />
+                                            <input asp-for="@Model.Seats[i].SeatNumber" class="form-control" placeholder="Seat Number" />
+                                        </td>
+                                        <td>
+                                            <input asp-for="@Model.Seats[i].Row" class="form-control" placeholder="Row" />
+                                        </td>
+                                        <td>
+                                            <input asp-for="@Model.Seats[i].Column" class="form-control" placeholder="Column" />
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger" onclick="removeSeat(this)">Remove</button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <button type="button" class="btn btn-secondary" onclick="addSeat()">Add Seat</button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function addSeat() {
+            var index = $('#seats-container tr').length;
+            var row = `
+                <tr>
+                    <td><input name="Seats[` + index + `].SeatNumber" class="form-control" placeholder="Seat Number" /></td>
+                    <td><input name="Seats[` + index + `].Row" class="form-control" placeholder="Row" /></td>
+                    <td><input name="Seats[` + index + `].Column" class="form-control" placeholder="Column" /></td>
+                    <td><button type="button" class="btn btn-danger" onclick="removeSeat(this)">Remove</button></td>
+                </tr>`;
+            $('#seats-container').append(row);
+        }
+
+        function removeSeat(button) {
+            $(button).closest('tr').remove();
+        }
+    </script>
+}

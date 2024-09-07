@@ -1,0 +1,22 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  myticket.webmvc:
+    build:
+      context: "C:\\Users\\turan.heydarli\\RiderProjects\\MyTicket"
+      dockerfile: "MyTicket.UI/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net7.0/MyTicket.UI.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_STATICWEBASSETS: "/app/bin/Debug/net7.0/MyTicket.UI.staticwebassets.runtime.CT.json"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "myticket.ui:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\turan.heydarli\\.nuget\\packages:/root/.nuget/packages"
+    - "C:\\Users\\turan.heydarli\\RiderProjects\\MyTicket\\MyTicket.UI:/app:rw"
+    - "C:\\Users\\turan.heydarli\\RiderProjects\\MyTicket:/src:rw"
+    working_dir: "/app"

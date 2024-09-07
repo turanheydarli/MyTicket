@@ -1,0 +1,40 @@
+@model List<CartItemViewModel>
+
+<div class="container">
+    <h1>Your Cart</h1>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Movie</th>
+                    <th>Showtime</th>
+                    <th>Seat</th>
+                    <th>Cinema Hall</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.MovieTitle</td>
+                        <td>@item.Showtime.ToShortTimeString() on @item.Showtime.ToShortDateString()</td>
+                        <td>@item.SeatInfo</td>
+                        <td>@item.CinemaHallName</td>
+                        <td>$@item.Price</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <form asp-action="Checkout" method="post">
+            <button type="submit" class="btn btn-primary">Proceed to Checkout</button>
+        </form>
+    }
+    else
+    {
+        <p>Your cart is empty.</p>
+    }
+</div>

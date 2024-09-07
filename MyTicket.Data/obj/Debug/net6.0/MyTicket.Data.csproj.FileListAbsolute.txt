@@ -1,0 +1,14 @@
+C:\Users\turan.heydarli\RiderProjects\MyTicket\MyTicket.Data\bin\Debug\net6.0\MyTicket.Data.deps.json
+C:\Users\turan.heydarli\RiderProjects\MyTicket\MyTicket.Data\bin\Debug\net6.0\MyTicket.Data.runtimeconfig.json
+C:\Users\turan.heydarli\RiderProjects\MyTicket\MyTicket.Data\bin\Debug\net6.0\MyTicket.Data.dll
+C:\Users\turan.heydarli\RiderProjects\MyTicket\MyTicket.Data\bin\Debug\net6.0\MyTicket.Data.pdb
+C:\Users\turan.heydarli\RiderProjects\MyTicket\MyTicket.Data\obj\Debug\net6.0\MyTicket.Data.csproj.AssemblyReference.cache
+C:\Users\turan.heydarli\RiderProjects\MyTicket\MyTicket.Data\obj\Debug\net6.0\MyTicket.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\turan.heydarli\RiderProjects\MyTicket\MyTicket.Data\obj\Debug\net6.0\MyTicket.Data.AssemblyInfoInputs.cache
+C:\Users\turan.heydarli\RiderProjects\MyTicket\MyTicket.Data\obj\Debug\net6.0\MyTicket.Data.AssemblyInfo.cs
+C:\Users\turan.heydarli\RiderProjects\MyTicket\MyTicket.Data\obj\Debug\net6.0\MyTicket.Data.csproj.CoreCompileInputs.cache
+C:\Users\turan.heydarli\RiderProjects\MyTicket\MyTicket.Data\obj\Debug\net6.0\MyTicket.Data.dll
+C:\Users\turan.heydarli\RiderProjects\MyTicket\MyTicket.Data\obj\Debug\net6.0\refint\MyTicket.Data.dll
+C:\Users\turan.heydarli\RiderProjects\MyTicket\MyTicket.Data\obj\Debug\net6.0\MyTicket.Data.pdb
+C:\Users\turan.heydarli\RiderProjects\MyTicket\MyTicket.Data\obj\Debug\net6.0\MyTicket.Data.genruntimeconfig.cache
+C:\Users\turan.heydarli\RiderProjects\MyTicket\MyTicket.Data\obj\Debug\net6.0\ref\MyTicket.Data.dll

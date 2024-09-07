@@ -1,0 +1,48 @@
+@model PaymentViewModel
+
+<div class="container-fluid">
+    <h1 class="h3 mb-2 text-gray-800">Create New Payment</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Payment Details</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" asp-controller="Payment" method="post">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Ticket</span>
+                    <select asp-for="Payment.TicketId" class="form-control" aria-label="Ticket" aria-describedby="basic-addon1">
+                        <option value="">Select a Ticket</option>
+                        @foreach (var ticket in Model.Tickets)
+                        {
+                            <option value="@ticket.Id">
+                                Movie: @ticket.Showtime.Movie.Title, Customer: @ticket.Customer.Name, Seat: @ticket.Seat.SeatNumber
+                            </option>
+                        }
+                    </select>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon2">Amount</span>
+                    <input asp-for="Payment.Amount" type="number" step="0.01" class="form-control" placeholder="Amount" aria-label="Amount" aria-describedby="basic-addon2">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Payment Method</span>
+                    <select asp-for="Payment.PaymentType" class="form-control" aria-label="Payment Method" aria-describedby="basic-addon3">
+                        <option value="">Select a Payment Method</option>
+                        <option value="Credit Card">Credit Card</option>
+                        <option value="PayPal">PayPal</option>
+                    </select>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon4">Payment Date</span>
+                    <input asp-for="Payment.PaymentDate" type="datetime-local" class="form-control" aria-label="Payment Date" aria-describedby="basic-addon4">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+</div>

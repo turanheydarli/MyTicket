@@ -1,0 +1,27 @@
+@model MyTicket.UI.Areas.Admin.Models.CinemaHallViewModel
+
+<div class="container-fluid">
+    <h1 class="h3 mb-2 text-gray-800">Delete Cinema Hall</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-danger">Confirm Deletion</h6>
+        </div>
+        <div class="card-body">
+            <p>Are you sure you want to delete the following cinema hall?</p>
+            <dl class="row">
+                <dt class="col-sm-3">Name</dt>
+                <dd class="col-sm-9">@Model.CinemaHall.Name</dd>
+                <dt class="col-sm-3">Location</dt>
+                <dd class="col-sm-9">@Model.CinemaHall.Location</dd>
+                <dt class="col-sm-3">Capacity</dt>
+                <dd class="col-sm-9">@Model.CinemaHall.Capacity</dd>
+            </dl>
+            <form asp-action="Delete" asp-controller="CinemaHall" method="post">
+                <input type="hidden" asp-for="CinemaHall.Id" />
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>

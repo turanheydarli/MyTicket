@@ -1,0 +1,43 @@
+@model MyTicket.UI.Areas.Admin.Models.MovieViewModel
+
+<div class="container-fluid">
+    <h1 class="h3 mb-2 text-gray-800">Create New Movie</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Movie Details</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" asp-controller="Movie" enctype="multipart/form-data" method="post">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Title</span>
+                    <input asp-for="Movie.Title" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon2">Genre</span>
+                    <input asp-for="Movie.Genre" class="form-control" placeholder="Genre" aria-label="Genre" aria-describedby="basic-addon2">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">Duration</span>
+                    <input asp-for="Movie.Duration" type="number" class="form-control" placeholder="Duration in minutes" aria-label="Duration" aria-describedby="basic-addon3">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon4">Director</span>
+                    <input asp-for="Movie.Director" class="form-control" placeholder="Director" aria-label="Director" aria-describedby="basic-addon4">
+                </div>
+                
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon4">Thumbnail</span>
+                    <input asp-for="ThumbnailFile" class="form-control" placeholder="Director" aria-label="Director" aria-describedby="basic-addon4">
+                </div>
+                
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon5">Release Date</span>
+                    <input asp-for="Movie.ReleaseDate" type="date" class="form-control" aria-label="Release Date" aria-describedby="basic-addon5">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+</div>

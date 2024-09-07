@@ -1,0 +1,34 @@
+@model MovieDetailsViewModel
+
+<div class="container">
+    <h1>@Model.Title</h1>
+    <img src="@Url.Content(Model.ThumbnailUrl)" alt="@Model.Title" class="img-fluid">
+    <p>Genre: @Model.Genre</p>
+    <p>Duration: @Model.Duration mins</p>
+    <p>Director: @Model.Director</p>
+    <p>Release Date: @Model.ReleaseDate.ToShortDateString()</p>
+
+    <h2>Showtimes</h2>
+    <ul>
+        @foreach (var showtime in Model.Showtimes)
+        {
+            <li>
+                @showtime.StartTime.ToShortTimeString() on @showtime.StartTime.ToShortDateString() - @showtime.CinemaHall
+                <ul>
+                    @foreach (var seat in showtime.AvailableSeats)
+                    {
+                        <li>
+                            Seat: Row @seat.Row, Number @seat.SeatNumber - Price: 
+                            <form asp-action="AddToCart" asp-controller="Cart" method="post">
+                                <input type="hidden" name="showtimeId" value="@showtime.Id" />
+                                <input type="hidden" name="seatId" value="@seat.Id" />
+                                @* <input type="hidden" name="price" value="@seat.Price" /> *@
+                                <button type="submit" class="btn btn-success">Add to Cart</button>
+                            </form>
+                        </li>
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+</div>
